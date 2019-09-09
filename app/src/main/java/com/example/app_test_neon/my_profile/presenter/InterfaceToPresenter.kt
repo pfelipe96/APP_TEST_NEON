@@ -4,6 +4,6 @@ import com.example.app_test_neon.data.InfoProfile
 import io.reactivex.Single
 
 interface InterfaceToPresenter{
-    fun getToken()
+    fun getToken() : Single<String>
     fun getInfoProfile(): Single<InfoProfile>
 }

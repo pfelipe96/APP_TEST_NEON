@@ -5,7 +5,6 @@ import android.app.Application
 import com.example.app_test_neon.di.component.ApplicationComponent
 import com.example.app_test_neon.di.component.DaggerApplicationComponent
 import com.example.app_test_neon.di.module.ApplicationModule
-import com.example.app_test_neon.di.module.NetworkModule
 import com.example.app_test_neon.repository.QueryAppRepository
 import javax.inject.Inject
 
@@ -23,7 +22,6 @@ class MainApplication: Application(){
         applicationComponent = DaggerApplicationComponent
             .builder()
             .applicationModule(ApplicationModule(this))
-            .networkModule(NetworkModule())
             .build()
 
         applicationComponent.inject(this@MainApplication)

@@ -4,5 +4,6 @@ enum class StatusApi {
     INITIAL,
     LOADING,
     SUCCESS,
-    FAIL
+    FAIL,
+    LIST_EMPTY
 }

@@ -14,6 +14,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:background="@drawable/background_to_image_contact"
+        android:gravity="center"
+        android:textSize="36sp"
+        android:textColor="@color/oceania"
+        tools:text="PF"
+        android:textAllCaps="true"
+        android:textStyle="bold"
         android:layout_width="96dp"
         android:layout_height="96dp"
         />
