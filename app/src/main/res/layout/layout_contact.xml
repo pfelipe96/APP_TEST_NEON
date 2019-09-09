@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:paddingBottom="16dp"
+    android:paddingTop="16dp">
+
+    <TextView
+        android:id="@+id/background_icon_profile"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:background="@drawable/background_to_image_contact"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:id="@+id/icon_profile"
+        android:padding="4dp"
+        android:layout_width="96dp"
+        android:layout_height="96dp"/>
+
+    <TextView
+        android:id="@+id/name_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/icon_profile"
+        android:textStyle="bold"
+        android:textColor="@color/oceania"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:textSize="18sp"
+        android:layout_marginStart="16dp"
+        tools:text="TEST" />
+
+    <TextView
+        android:id="@+id/phone_contact"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="16dp"
+        android:textSize="14sp"
+        tools:text="TEST"
+        app:layout_constraintTop_toBottomOf="@+id/name_contact"
+        app:layout_constraintLeft_toRightOf="@+id/icon_profile"
+        android:textColor="@color/oceania"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

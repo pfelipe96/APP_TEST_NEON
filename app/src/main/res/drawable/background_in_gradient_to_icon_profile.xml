@@ -1,0 +1,21 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <gradient
+        android:centerX="0.2"
+        android:centerY="0"
+        android:angle="360"
+        android:endColor="@color/light_oceania"
+        android:centerColor="@color/dark_blue"
+        android:startColor="@color/dark_blue"
+        android:type="linear" />
+
+    <!--If your shape requires only one solid color-->
+    <!--<solid
+        android:color="#FFFFFF" />-->
+
+    <size
+        android:width="136dp"
+        android:height="136dp" />
+
+</shape>
