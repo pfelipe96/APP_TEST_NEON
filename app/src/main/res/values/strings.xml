@@ -2,9 +2,12 @@
     <string name="app_name">APP_TEST_NEON</string>
     <string name="send_money">Enviar Dinheiro</string>
     <string name="history_of_sends">Histórico de envios</string>
-    <string name="success">Sucesso ao gerar token</string>
+    <string name="success">Sucesso, token gerado</string>
     <string name="genarete_token">Gerando Token</string>
     <string name="fail_genarete_token">Falha ao gerar token</string>
     <string name="message_to_fail">Ocorreu um erro, por gentileza tente novamente</string>
     <string name="reloading">Recarregar</string>
+    <string name="send_value">Valor a enviar:</string>
+    <string name="send">Enviar</string>
+    <string name="hint_to_input_value">RS 0,00</string>
 </resources>

@@ -11,7 +11,6 @@ class GetTokenJob @Inject constructor(
     private val queryAppRepository: QueryAppRepository,
     private val repositoryMyProfile: RepositoryMyProfile
 ) {
-
     fun getTokenFromRepository() : Single<String> {
         val name = queryAppRepository.getString("name")
         val mail = queryAppRepository.getString("mail")

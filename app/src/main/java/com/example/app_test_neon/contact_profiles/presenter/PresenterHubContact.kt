@@ -6,7 +6,7 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 class PresenterHubContact @Inject constructor(
-    val repositoryContactProfiles: RepositoryContactProfiles
+    private val repositoryContactProfiles: RepositoryContactProfiles
 ) : InterfacePresenterHubContact {
     fun getListContact() : Single<List<InfoContact>> =
         repositoryContactProfiles.getListContact()

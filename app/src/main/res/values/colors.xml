@@ -8,4 +8,7 @@
     <color name="oceania">#007c80</color>
     <color name="light_oceania">#00ffc8</color>
     <color name="yellow">#FFFF00</color>
+    <color name="dark_oceania">#004e5e</color>
+    <color name="customer_gray">#ececec</color>
+    <color name="background_transparent">#bf2a2a2a</color>
 </resources>
