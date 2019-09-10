@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.example.app_test_neon.R
+import com.example.app_test_neon.data.DataGetTransfers
 import com.example.app_test_neon.data.InfoContact
 import com.example.app_test_neon.extensions.loadImage
 import io.reactivex.Observable
@@ -15,7 +16,7 @@ import kotlinx.android.synthetic.main.dialog_fragment_to_send_money.*
 
 class DialogFragmentToSendMoney : DialogFragment() {
 
-    private val dispatch: PublishSubject<InfoContact> = PublishSubject.create()
+    private val dispatch: PublishSubject<DataGetTransfers> = PublishSubject.create()
 
     companion object {
         private const val ARGUMENT_INFO_CONTACT = "INFO_CONTACT"
@@ -36,7 +37,7 @@ class DialogFragmentToSendMoney : DialogFragment() {
         return inflater.inflate(R.layout.dialog_fragment_to_send_money, container, false)
     }
 
-    fun observableOnClick() : Observable<InfoContact> = dispatch
+    fun observableOnClick() : Observable<DataGetTransfers> = dispatch
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +51,18 @@ class DialogFragmentToSendMoney : DialogFragment() {
         phone_contact_dialog?.text = getInfoContact().phone
         handlerImage(getInfoContact().name, getInfoContact().imageProfile)
 
-        send_money_in_dialog?.setOnClickListener { dispatch.onNext(getInfoContact()) }
+
+
+        send_money_in_dialog?.setOnClickListener {
+            val dataGetTransfers = DataGetTransfers(
+                idCustomer = getInfoContact().id,
+                value = input_value?.text?.toString()?.toDouble() ?: -1.0
+            )
+
+            dispatch.onNext(dataGetTransfers)
+            dismiss()
+        }
+
         icon_close?.setOnClickListener { dismiss() }
     }
 

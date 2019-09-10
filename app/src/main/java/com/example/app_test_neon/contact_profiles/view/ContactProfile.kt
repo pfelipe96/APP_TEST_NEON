@@ -3,6 +3,7 @@ package com.example.app_test_neon.contact_profiles.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -94,10 +95,25 @@ class ContactProfile : AppCompatActivity() {
         val dialogFragment = DialogFragmentToSendMoney
             .newInstance(infoContact)
 
+
         dialogFragment.observableOnClick()
             .subscribeOn(AndroidSchedulers.mainThread())
-            .doOnNext {}
-            .ignoreElements()
+            .flatMapCompletable { dataGetTransfers ->
+                presenterHubContacts
+                    .sendValue(dataGetTransfers)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnSuccess {
+                        if(it)
+                            Toast.makeText(this@ContactProfile, "Dinheiro enviado com sucesso", Toast.LENGTH_LONG).show()
+                        else
+                            Toast.makeText(this@ContactProfile, "Falha ao enviar o dinheiro, tente novamente", Toast.LENGTH_LONG).show()
+                    }
+                    .doOnError {
+                        Toast.makeText(this@ContactProfile, "Falha ao enviar o dinheiro, tente novamente", Toast.LENGTH_LONG).show()
+                    }
+                    .ignoreElement()
+                    .onErrorComplete()
+            }
             .onErrorComplete()
             .doOnError { Log.e("error_contact_profile", it.message.toString()) }
             .subscribe()

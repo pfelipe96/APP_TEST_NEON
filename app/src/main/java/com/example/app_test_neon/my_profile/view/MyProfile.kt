@@ -54,7 +54,7 @@ class MyProfile : AppCompatActivity() {
             setInitializeGenerateToken()
         }else{
             handlerState(StatusApi.FAIL, "profile")
-            Toast.makeText(this, "Verifique sua internet.", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.check_your_internet), Toast.LENGTH_LONG).show()
         }
     }
 

@@ -1,8 +1,10 @@
 package com.example.app_test_neon.di.module
 
 import android.app.Application
+import androidx.room.Room
 import com.example.app_test_neon.repository.AppRepository
 import com.example.app_test_neon.repository.QueryAppRepository
+import com.example.app_test_neon.room.SendMoneyDatabase
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -29,10 +31,7 @@ class ApplicationModule(application: Application) {
 
     @Provides
     @Singleton
-    fun providesSendMoneyDatabase() : FavoriteDatabase{
-        return Room.databaseBuilder(applicationInst, FavoriteDatabase::class.java, "favorite-db")
-            .allowMainThreadQueries()
-            .fallbackToDestructiveMigration()
-            .build()
+    fun providesSendMoneyDatabase() : SendMoneyDatabase{
+        return Room.databaseBuilder(applicationInst, SendMoneyDatabase::class.java, "sendMoney-db").build()
     }
 }
