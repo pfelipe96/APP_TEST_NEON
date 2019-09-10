@@ -4,5 +4,5 @@ App Test Neon
 
 - O principal objetivo da aplicação e verificar o histórico de envio de dinheiro e enviar dinheiro para amigos
 - Arquitetura do aplicativo foi construído pensando em orientação por status, ou seja, cada tela tem o status de Inicialização,
-Falha, Sucesso, List vázia e carregamento, e juntamente com uma arquitetura com transmissões reativas.
+Falha, Sucesso, List Vazia e Carregamento, e juntamente com uma arquitetura com transmissões reativas.
 
