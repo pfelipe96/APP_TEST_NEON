@@ -28,6 +28,7 @@ android {
 dependencies {
     def version_dagger = "2.22.1"
     def retrofit = "2.5.0"
+    def version_room = "1.1.1"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -64,4 +65,9 @@ dependencies {
     }
 
     implementation 'com.facebook.shimmer:shimmer:0.4.0'
+
+    implementation "android.arch.persistence.room:runtime:$version_room"
+    implementation "android.arch.persistence.room:rxjava2:$version_room"
+    kapt "android.arch.persistence.room:compiler:$version_room"
+    annotationProcessor "android.arch.persistence.room:compiler:$version_room"
 }

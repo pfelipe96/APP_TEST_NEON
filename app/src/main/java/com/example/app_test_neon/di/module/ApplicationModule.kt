@@ -26,4 +26,13 @@ class ApplicationModule(application: Application) {
     @Provides
     @Singleton
     fun provideAppRepository() : QueryAppRepository = AppRepository(applicationInst)
+
+    @Provides
+    @Singleton
+    fun providesSendMoneyDatabase() : FavoriteDatabase{
+        return Room.databaseBuilder(applicationInst, FavoriteDatabase::class.java, "favorite-db")
+            .allowMainThreadQueries()
+            .fallbackToDestructiveMigration()
+            .build()
+    }
 }

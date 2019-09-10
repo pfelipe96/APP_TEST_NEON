@@ -106,6 +106,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
+                android:inputType="numberDecimal"
                 android:hint="@string/hint_to_input_value"
                 android:textColorHint="@color/oceania"
                 android:textColor="@color/oceania"

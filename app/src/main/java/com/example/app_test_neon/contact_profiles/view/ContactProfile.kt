@@ -25,7 +25,7 @@ class ContactProfile : AppCompatActivity() {
     @Inject
     lateinit var presenterHubContacts: PresenterHubContact
 
-    companion object{
+    companion object {
         private const val RECYCLER_VIEW_CONTACT = "RECYCLER_VIEW_CONTACT"
         private const val ALL = "ALL"
     }
@@ -72,16 +72,14 @@ class ContactProfile : AppCompatActivity() {
             this.adapter = adapterContacts
         }
 
-        adapterContacts.setAdapter(
-            presenterHubContacts
-                .getListContact()
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnSuccess {
-                    if (it.isEmpty().not())
-                        handlerState(StatusApi.SUCCESS, RECYCLER_VIEW_CONTACT)
-                }
-                .doOnError { handlerState(StatusApi.FAIL, "recycler_view") }
-        )
+        val observableToList = presenterHubContacts
+            .getListContact()
+            .observeOn(AndroidSchedulers.mainThread())
+            .filter { it.isEmpty().not() }
+            .doOnSuccess { handlerState(StatusApi.SUCCESS, RECYCLER_VIEW_CONTACT) }
+            .doOnError { handlerState(StatusApi.FAIL, "recycler_view") }
+
+        adapterContacts.setAdapter(observableToList)
 
         adapterContacts.observableContact()
             .subscribeOn(AndroidSchedulers.mainThread())
@@ -92,13 +90,20 @@ class ContactProfile : AppCompatActivity() {
             .subscribe()
     }
 
-    private fun showDialogFragment(infoContact: InfoContact){
-        DialogFragmentToSendMoney.newInstance(
-            id = infoContact.id,
-            name = infoContact.name,
-            phone = infoContact.phone,
-            image = infoContact.imageProfile
-        ).show(supportFragmentManager, "DIALOG_FRAGMENT_TO_SEND_MONEY")
+    private fun showDialogFragment(infoContact: InfoContact) {
+        val dialogFragment = DialogFragmentToSendMoney
+            .newInstance(infoContact)
+
+        dialogFragment.observableOnClick()
+            .subscribeOn(AndroidSchedulers.mainThread())
+            .doOnNext {}
+            .ignoreElements()
+            .onErrorComplete()
+            .doOnError { Log.e("error_contact_profile", it.message.toString()) }
+            .subscribe()
+
+        if (isFinishing.not())
+            dialogFragment.show(supportFragmentManager, "DIALOG_FRAGMENT_TO_SEND_MONEY")
     }
 
     private fun handlerState(statusApi: StatusApi, from: String) {

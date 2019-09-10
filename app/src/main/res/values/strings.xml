@@ -9,5 +9,5 @@
     <string name="reloading">Recarregar</string>
     <string name="send_value">Valor a enviar:</string>
     <string name="send">Enviar</string>
-    <string name="hint_to_input_value">RS 0,00</string>
+    <string name="hint_to_input_value">R$ 0,00</string>
 </resources>

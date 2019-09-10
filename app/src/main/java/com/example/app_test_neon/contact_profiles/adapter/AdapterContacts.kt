@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.app_test_neon.R
 import com.example.app_test_neon.contact_profiles.adapter.holder.Contact
 import com.example.app_test_neon.data.InfoContact
+import io.reactivex.Maybe
 import io.reactivex.Observable
-import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
@@ -32,15 +32,13 @@ class AdapterContacts : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemCount(): Int = listData.size
 
-    fun setAdapter(single: Single<List<InfoContact>>) {
+    fun setAdapter(single: Maybe<List<InfoContact>>) {
         single
             .delaySubscription(1500, TimeUnit.MILLISECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .filter { it.isEmpty().not() }
-            .doOnSuccess {
-                this.listData = it
-                notifyDataSetChanged()
-            }
+            .doOnSuccess { this.listData = it }
+            .doOnSuccess { notifyDataSetChanged() }
             .subscribeOn(Schedulers.io())
             .subscribe()
     }
